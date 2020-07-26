@@ -1,0 +1,25 @@
+site_name: RockSense Dokumentation
+theme: readthedocs
+nav:
+    - Home: 'index.md'
+    - 'User Guide': 'user-guide.md'
+    - 'Dokumentation':
+        - 'Wall': 'classes/wall.md'
+        - 'Hold': 'classes/hold.md'
+        - 'Led': 'classes/led.md'
+        - 'Sensor': 'classes/sensor.md'
+        - 'User': 'classes/user.md'
+        - 'Game': 'classes/game.md'
+        - 'Route': 'classes/route.md'
+        - 'UI': 'ui.md'
+    - About: 'about.md'
+
+markdown_extensions:
+  - attr_list
+
+
+
+# mkdocs installieren
+# Terminal und per cd ins richtige Verzeichnis
+# mkdocs serve
+# im Browser: http://127.0.0.1:8000/ eingeben --> Testversion wird angezeigt
