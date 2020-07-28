@@ -71,7 +71,7 @@ class Routemanager(QObject):
 
                 new_score = Score(route_ident, user_ident, climbingtime, timestamp)
                 Routemanager.scores_list.append(new_score)
-                Routemanager.save_scores()
+                Routemanager.save_times()
 
         except IOError:
             print('Could not read file. Creating a new one when saving.')  # überflüssig, wird in load database gecacht
@@ -115,7 +115,7 @@ class Routemanager(QObject):
             user_ident = ET.SubElement(scoredata, 'user_id')
             user_ident.text = str(score_data.user_id)
             climbingtime = ET.SubElement(scoredata, 'climbingtime')
-            climbingtime.text = str(score_data.climbingtime)
+            climbingtime.text = str(score_data.user_score)
             timestamp = ET.SubElement(scoredata, 'timestamp')
             timestamp.text = str(score_data.timestamp)
 
@@ -176,7 +176,7 @@ class Routemanager(QObject):
                     hold.start = False # resets both holds for next climbing
                     hold.end = False
                     chosen_holds.append(hold)
-                    print(str(hold) + " appended.")
+                    #print(str(hold) + " appended.")
 
         new_route = Route(len(Routemanager.routes_list), Routemanager.new_route_name, chosen_holds,
                           chosen_holds[0].hold_id, chosen_holds[len(chosen_holds)-1].hold_id)
@@ -241,7 +241,7 @@ class Routemanager(QObject):
         score = Score(Routemanager.current_route.route_id, Usermanager.current_user.id_number,
                       Routemanager.current_climbing_time, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         Routemanager.scores_list.append(score)
-        Routemanager.save_scores()
+        Routemanager.save_times()
         gpio.led.all_led_off()
 
     @Slot(result=str)

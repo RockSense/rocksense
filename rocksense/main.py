@@ -13,6 +13,9 @@ from gpio.wallmanager import Wallmanager
 from routemanager.routemanager import Routemanager
 from gamemanager.gamemanager import Gamemanager
 
+os.environ["QT_IM_MODULE"] = "qtvirtualkeyboard"
+    
+
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
@@ -42,7 +45,7 @@ if __name__ == "__main__":
     gamemanager.load_xml_scores()
     gamemanager.load_xml_games()
     engine.rootContext().setContextProperty("gamemanager", gamemanager)
-
+    
 
     # App starten
     if not engine.rootObjects():

@@ -134,7 +134,10 @@ Page {
             id: mouseExit
             anchors.topMargin: 0
             anchors.fill: parent
-            onClicked: Qt.quit()
+            onClicked: {
+                wallmanager.shutdown_leds()
+                Qt.quit()
+            }
         }
     }
 

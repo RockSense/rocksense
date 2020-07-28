@@ -34,8 +34,8 @@ Page {
                 countdown = -1
                 second = (gamemanager.set_timer()%60)
                 minute = (gamemanager.set_timer()/60)
-                gamemanager.start_catchit() /7 starts the game
-                timerGame.start() // starts the timerr
+                gamemanager.start_catchit() // starts the game
+                timerGame.start() // starts the timer
 
             }
             else if (countdown == -1 || countdown == -2) {

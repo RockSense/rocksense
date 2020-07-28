@@ -1,14 +1,1 @@
-<climbingtimes>
-    <time>
-        <route_id>00</route_id>
-        <user_id>2</user_id>
-        <climbingtime>3.3642961978912354</climbingtime>
-        <timestamp>2020-06-10 18:12:30</timestamp>
-    </time>
-    <time>
-        <route_id>01</route_id>
-        <user_id>2</user_id>
-        <climbingtime>2.6457746028900146</climbingtime>
-        <timestamp>2020-06-10 18:13:12</timestamp>
-    </time>
-</climbingtimes>
+<climbingtimes><time><route_id>1</route_id><user_id>4</user_id><climbingtime>5.33</climbingtime><timestamp>2020-07-27 19:29:36</timestamp></time><time><route_id>2</route_id><user_id>4</user_id><climbingtime>6.574</climbingtime><timestamp>2020-07-27 19:29:59</timestamp></time></climbingtimes>

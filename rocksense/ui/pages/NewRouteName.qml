@@ -2,9 +2,11 @@ import QtQuick 2.2
 import QtQuick.Controls 2.2
 import "../items/."
 import "../fonts/."
+import QtQuick.VirtualKeyboard 2.1
+//import QtQuick.VirtualKeyboard.Settings 2.2
+
 
 Page {
-
     id: wall
     title: qsTr("Neue Route anlegen")
     width: 600
@@ -15,7 +17,7 @@ Page {
 
     property bool busy: false
     property string username_str: ""
-
+    
     Background {
 
         MouseArea {
@@ -79,7 +81,7 @@ Page {
             placeholderText: "Routename"
             text:""
             font.family: mollen.name
+            focus: Qt.inputMethod.visible;
         }
     }
-
 }

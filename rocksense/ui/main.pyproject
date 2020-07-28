@@ -2,6 +2,7 @@
     "files": ["main.py",
     "pages/StartPage.qml",
     "items/Footer.qml",
+    "items/Keyboard.qml",
     "items/MenuButton.qml",
     "pages/WallSelection.qml",
     "pages/GameSelection.qml",
