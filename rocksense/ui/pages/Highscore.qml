@@ -162,7 +162,7 @@ Page {
 
         Text {
                 id: headingRoute
-                text: "Get Them All"
+                text: "Routenergebnisse"
                 font.pixelSize: 50
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.family: scratch.name
@@ -170,7 +170,7 @@ Page {
 
         Text {
                 id: first
-                text: "1. Platz: " + routemanager.get_route_score(0, routeListModel.currentIndex-1)
+                text: "1. Platz: " 
                 anchors.top: headingRoute.bottom
                 anchors.topMargin: 100
                 font.pixelSize: 35

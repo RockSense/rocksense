@@ -63,7 +63,7 @@ Page {
 
 
             Description {
-                text: "Bei Catch It geht es darum so viele aufleuchtende Griffe wie möglich zu berühren - Du hast eine Minute Zeit!"
+                text: "Bei Catch It geht es darum so viele aufleuchtende Griffe wie möglich zu berühren - Du hast aber nicht unbegrenzt Zeit!"
             }
 
             // button to the catch it game

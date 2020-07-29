@@ -48,7 +48,10 @@ ApplicationWindow {
                 id: backmouse
                 anchors.fill: parent
                 anchors.margins: -10
-                onClicked: stack.pop()
+                onClicked: {
+                    wallmanager.shutdown_leds()
+                    stack.pop()
+                 }
             }
         }
 

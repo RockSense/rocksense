@@ -181,11 +181,46 @@ class Gamemanager(QObject):
 
     @staticmethod
     def catch_it_logic():
-        Wallmanager.start_listener(Gamemanager.chosen_game.hold_list)
-        Gamemanager.score_count = 0  # set score count to zero again
+        # Wallmanager.start_listener(Gamemanager.chosen_game.hold_list)
+        # Gamemanager.score_count = 0  # set score count to zero again
+        #
+        # holdlist_length = len(Gamemanager.chosen_game.hold_list)
+        # possible_holds = Gamemanager.chosen_game.hold_list
+        # random_index = randint(0, holdlist_length - 1)
+        # active_hold = possible_holds[random_index]
+        #
+        # while True:
+        #     random_index = randint(0, holdlist_length - 1)
+        #     pending_hold = possible_holds[random_index]
+        #
+        #     if pending_hold.zone == active_hold.zone:
+        #         continue
+        #     else:
+        #         active_hold = pending_hold
+        #         hold_open = True
+        #         while hold_open:
+        #             active_hold.led.led_on('blue')
+        #             # print("Led on") just for checking
+        #             # inp = int(input())  # just for checking without sensors
+        #
+        #             if active_hold.touched:  # or inp == active_hold.hold_id:  just for checking without sensors
+        #                 active_hold.led.led_off()
+        #                 # print("Led off")
+        #                 Gamemanager.score_count += 1
+        #                 hold_open = False
+        Gamemanager.score_count = 0
+        gpio.led.blink("green")
+        alibi_holds = []
+        funktioniert = [2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15]
+        for hold in Wallmanager.current_wall.hold_list:
+            for zahl in funktioniert:
+                if int(hold.hold_id) == zahl:
+                    alibi_holds.append(hold)
 
-        holdlist_length = len(Gamemanager.chosen_game.hold_list)
-        possible_holds = Gamemanager.chosen_game.hold_list
+        Wallmanager.start_listener(alibi_holds)
+
+        holdlist_length = len(alibi_holds)
+        possible_holds = alibi_holds
         random_index = randint(0, holdlist_length - 1)
         active_hold = possible_holds[random_index]
 
@@ -200,15 +235,14 @@ class Gamemanager(QObject):
                 hold_open = True
                 while hold_open:
                     active_hold.led.led_on('blue')
-                    # print("Led on") just for checking
+                    # print("Led on")  # just for checking
                     # inp = int(input())  # just for checking without sensors
-
                     if active_hold.touched:  # or inp == active_hold.hold_id:  just for checking without sensors
                         active_hold.led.led_off()
-                        # print("Led off")
+                        print("Led off")
                         Gamemanager.score_count += 1
                         hold_open = False
-
+        
     @staticmethod
     def catch_it():
         timeout = Gamemanager.chosen_game.timer
@@ -216,6 +250,7 @@ class Gamemanager(QObject):
             func_timeout(timeout, Gamemanager.catch_it_logic) #  exits the game immediately after time runs out
         except FunctionTimedOut:
             print("Ende" + str(Gamemanager.score_count))
+            gpio.led.blink("red")
         score = Score(Gamemanager.chosen_game.game_id, Usermanager.current_user.id_number, Gamemanager.score_count,
                       datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         Gamemanager.scores_list.append(score)
@@ -239,7 +274,7 @@ class Gamemanager(QObject):
         else:
             pass
 
-        list_sorted = sorted(scores_list_game, key=lambda score: score.user_score)
+        list_sorted = sorted(scores_list_game, key=lambda score: score.user_score, reverse=True)
 
         list_ranked_user = []
         for entry in Usermanager.user_list:

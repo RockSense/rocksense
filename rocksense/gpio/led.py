@@ -117,3 +117,15 @@ def theaterChaseRainbow(wait):  # 50 / 1000
             for i in range(0, LED_COUNT, 3):
                 pixels[i + q] = (0, 0, 0)
         j = j + 15  # j = color values, reduces time!
+
+
+def blink(color: str):
+    pixels.fill(Led.colors[color])
+    pixels.show()
+    time.sleep(0.2)
+    all_led_off()
+    time.sleep(0.2)
+    pixels.fill(Led.colors[color])
+    pixels.show()
+    time.sleep(0.2)
+    all_led_off()
