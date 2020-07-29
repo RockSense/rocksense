@@ -24,7 +24,7 @@ Page {
             id: mouseArea
             anchors.fill: parent
             onClicked: {
-                username.focus = false
+                routename.focus = false
             }
 
             // button to add a route name
@@ -83,5 +83,14 @@ Page {
             font.family: mollen.name
             focus: Qt.inputMethod.visible;
         }
+        InputPanel {
+            id: keyboard;
+            y: parent.height / 4 
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left;
+            anchors.right: parent.right;
+            opacity: routename.focus ? 1 : 0       
+
+       }
     }
 }

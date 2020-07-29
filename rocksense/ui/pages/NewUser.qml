@@ -2,6 +2,8 @@ import QtQuick 2.2
 import QtQuick.Controls 2.2
 import "../items/."
 import "../fonts/."
+import QtQuick.VirtualKeyboard 2.1
+
 
 
 Page {
@@ -79,7 +81,20 @@ Page {
             activeFocusOnPress: true
             placeholderText: "Username"
             font.family: mollen.name
+            focus: Qt.inputMethod.visible;
+
         }
+        InputPanel {
+        id: keyboard;
+        y: parent.height / 4 
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left;
+        anchors.right: parent.right;
+        opacity: username.focus ? 1 : 0
+        
+
+       }
+
     }
 
 }
