@@ -104,7 +104,7 @@ class Gamemanager(QObject):
             timestamp.text = str(score_data.timestamp)
 
         mydata = ET.tostring(data, encoding='unicode')
-        myfile = open('scores.xml', 'w')
+        myfile = open('gamemanager/scores.xml', 'w')
         myfile.write(mydata)
 
     @Slot(str)
@@ -211,7 +211,7 @@ class Gamemanager(QObject):
         Gamemanager.score_count = 0
         gpio.led.blink("green")
         alibi_holds = []
-        funktioniert = [2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15]
+        funktioniert = [2, 4, 5, 10, 11, 13, 14]
         for hold in Wallmanager.current_wall.hold_list:
             for zahl in funktioniert:
                 if int(hold.hold_id) == zahl:
@@ -277,8 +277,8 @@ class Gamemanager(QObject):
         list_sorted = sorted(scores_list_game, key=lambda score: score.user_score, reverse=True)
 
         list_ranked_user = []
-        for entry in Usermanager.user_list:
-            for user in list_sorted:
+        for user in list_sorted:
+            for entry in Usermanager.user_list:
                 if int(user.user_id) == int(entry.id_number):  # translates given user_id to corresponding username
                     name = entry.firstname
                     list_ranked_user.append(name)

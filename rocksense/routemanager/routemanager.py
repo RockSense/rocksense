@@ -169,7 +169,6 @@ class Routemanager(QObject):
     @Slot()
     def add_new_route(self):
         chosen_holds: List[Hold] = []
-
         for hold in Wallmanager.current_wall.hold_list:
             for index in Routemanager.chosen_holds_int:
                 if hold.hold_id == int(index):
@@ -179,7 +178,7 @@ class Routemanager(QObject):
                     #print(str(hold) + " appended.")
 
         new_route = Route(len(Routemanager.routes_list), Routemanager.new_route_name, chosen_holds,
-                          chosen_holds[0].hold_id, chosen_holds[len(chosen_holds)-1].hold_id)
+                          Routemanager.chosen_holds_int[0], Routemanager.chosen_holds_int[len(Routemanager.chosen_holds_int)-1])
         Routemanager.routes_list.append(new_route)
 
         #for route in Routemanager.routes_list:   checks if start- & endhold assignment works
@@ -197,9 +196,9 @@ class Routemanager(QObject):
         print("Needed Holds: ")
         for hold in route.hold_list:
             print(hold)
-            if hold.start:
+            if hold.hold_id == route.start_hold:
                 hold.led.led_on("green")
-            elif hold.end:
+            elif hold.hold_id == route.end_hold:
                 hold.led.led_on("red")
             else:
                 hold.led.led_on("lightblue")
