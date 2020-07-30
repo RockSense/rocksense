@@ -91,10 +91,14 @@ class Wallmanager(QObject):
             z += 1
 
     @staticmethod
-    def start_listener(hold_list):  # listener thread (to parallelize the different listeners)
+    def start_listener(hold_list):  # listener thread
+        listenerthread = threading.Thread(target=Wallmanager.listener, args=(hold_list,), daemon=True)
+        listenerthread.start()
+
+    @staticmethod
+    def listener(hold_list):  # listener for all given holds
         for hold in hold_list:
-            listenerthread = threading.Thread(target=hold.listener, daemon=True)
-            listenerthread.start()
+            hold.listener()
 
     @staticmethod
     def report_hold(hold: Hold):
@@ -111,8 +115,8 @@ class Wallmanager(QObject):
 
 if __name__ == "__main__":
     print("Welcome!")
-    led.colorWipe("white", 0.08)
-    led.all_led_off()
+    gpio.led.colorWipe("white", 0.08)
+    gpio.led.all_led_off()
     test_wall = Wall(1, 8, 3, "test", 0)
     wallmanager = Wallmanager()
     wallmanager.config_wall(test_wall)

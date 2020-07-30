@@ -34,7 +34,7 @@ class Hold(threading.Thread):
     def listener(self):
         self.sensor.listener_setup()
         while self.sensor.touches == 0:
-            #  checks changes in sensor values (buffer) every 100 Milliseconds
+            #  checks changes in sensor values (buffer) every 10 Milliseconds
             time.sleep(0.01)
             try:
                 if self.sensor.pin.value > 0:
